@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AquaEdge | Riego Inteligente Sin Internet</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#1a1c1e",
+                        "on-tertiary-fixed": "#291800",
+                        "tertiary-fixed": "#ffddb2",
+                        "surface-variant": "#e2e2e5",
+                        "tertiary-container": "#674404",
+                        "primary-container": "#1b4f72",
+                        "on-surface-variant": "#41474e",
+                        "surface-container": "#edeef1",
+                        "tertiary-fixed-dim": "#f1be76",
+                        "inverse-surface": "#2e3133",
+                        "surface-bright": "#f9f9fc",
+                        "on-primary-fixed": "#001e31",
+                        "on-tertiary-container": "#e4b36c",
+                        "secondary-fixed-dim": "#7bda96",
+                        "surface-container-low": "#f3f3f7",
+                        "on-primary-container": "#92c0e9",
+                        "on-error": "#ffffff",
+                        "outline": "#72787f",
+                        "surface-tint": "#326286",
+                        "on-primary": "#ffffff",
+                        "secondary": "#006d38",
+                        "tertiary": "#4a2f00",
+                        "surface-dim": "#d9dadd",
+                        "background": "#f9f9fc",
+                        "surface": "#f9f9fc",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#624000",
+                        "surface-container-highest": "#e2e2e5",
+                        "on-secondary-fixed-variant": "#005228",
+                        "on-secondary-fixed": "#00210d",
+                        "on-background": "#1a1c1e",
+                        "on-secondary-container": "#00723a",
+                        "inverse-primary": "#9dcbf4",
+                        "outline-variant": "#c1c7cf",
+                        "on-primary-fixed-variant": "#154b6d",
+                        "primary": "#003857",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f0f0f4",
+                        "primary-fixed": "#cce5ff",
+                        "primary-fixed-dim": "#9dcbf4",
+                        "secondary-fixed": "#96f7b0",
+                        "surface-container-high": "#e7e8eb",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#94f4ad",
+                        "accent-orange": "#E67E22"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "margin-desktop": "80px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "stat-value": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "stat-value": ["40px", {"lineHeight": "48px", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .cta-shadow {
+            box-shadow: 0 2px 0 0 rgba(0,0,0,0.1);
+        }
+        .card-shadow {
+            box-shadow: 0px 4px 20px rgba(27, 79, 114, 0.04);
+        }
+        .card-shadow:hover {
+            box-shadow: 0px 8px 32px rgba(27, 79, 114, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md">
+<!-- TopNavBar -->
+<header class="bg-surface/90 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+<nav class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="font-headline-sm text-headline-sm font-bold text-primary">AquaEdge</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md" href="#problem">Problema</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md" href="#solution">Solución</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md" href="#segments">Segmentos</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-md" href="#contact">Contacto</a>
+</div>
+<button class="bg-accent-orange text-white px-6 py-2 rounded-lg font-bold cta-shadow active:scale-95 transition-transform duration-200">
+                Solicitar Demo
+            </button>
+</nav>
+</header>
+<!-- Hero Section -->
+<section class="relative min-h-[85vh] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Irrigation fields" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAY2Db-keHfDD_0bKzLIUFzkifmavjIxQhlLOQXNZC0sa6mC3zKjMHYuo-JLODfTO-k3wlphy46-tmW_5SqF91zUjGe1pQWYKGkqHkn0IrqZldiCiMPaEr0wJcD7kqjXcJAQDMk7OMqw5nBIx7I5d0l2GeMtrQGniug2G3QBWNp625WIEOjp-COU41CKIBk8Pb9pSc7uuYLN738TGtmTbMp0KouXtSUl2X5L65KClYIYXAPT-j_A5YlNFHvIwMhU_VLYDY-PRaEnFM"/>
+<div class="absolute inset-0 bg-primary/40 mix-blend-multiply"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
+</div>
+<div class="relative z-10 w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-white">
+<div class="max-w-2xl">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight">
+                    Riego Inteligente Sin Internet
+                </h1>
+<p class="font-body-lg text-body-lg mb-10 text-white/90">
+                    Automatiza tus cultivos con sensores IoT y Edge Computing. Sin necesidad de WiFi en la parcela. Agricultura de precisión para altos rendimientos.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-accent-orange text-white px-8 py-4 rounded-lg font-bold text-lg cta-shadow hover:brightness-110 transition-all">
+                        Solicitar Demo
+                    </button>
+<button class="bg-white/10 backdrop-blur-sm border border-white/30 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/20 transition-all">
+                        Saber Más
+                    </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Problem Section -->
+<section id="problem" class="py-20 md:py-32 bg-surface">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<h2 class="font-headline-md text-headline-md text-center mb-16 text-primary">La Crisis Hídrica en la Agricultura Peruana</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="bg-white p-10 rounded-xl card-shadow border-t-4 border-error">
+<span class="material-symbols-outlined text-error text-5xl mb-6">water_drop</span>
+<p class="font-headline-sm text-headline-sm text-on-surface">80% del agua se destina a la agricultura, pero solo el 30% se usa eficientemente</p>
+</div>
+<div class="bg-white p-10 rounded-xl card-shadow border-t-4 border-accent-orange">
+<span class="material-symbols-outlined text-accent-orange text-5xl mb-6">warning</span>
+<p class="font-headline-sm text-headline-sm text-on-surface">Reservorio de Poechos al 21.5% de su capacidad</p>
+</div>
+<div class="bg-white p-10 rounded-xl card-shadow border-t-4 border-primary">
+<span class="material-symbols-outlined text-primary text-5xl mb-6">agriculture</span>
+<p class="font-headline-sm text-headline-sm text-on-surface">50,000 hectáreas en riesgo de sequía</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Solution Section -->
+<section id="solution" class="py-20 md:py-32 bg-surface-container-low overflow-hidden">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<h2 class="font-headline-md text-headline-md text-center mb-20 text-primary">Cómo Funciona AquaEdge</h2>
+<div class="relative">
+<div class="hidden lg:block absolute top-12 left-0 w-full h-1 bg-primary/10"></div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter relative">
+<div class="bg-white p-8 rounded-xl card-shadow relative z-10">
+<div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white font-bold text-2xl mb-6">1</div>
+<h3 class="font-headline-sm text-headline-sm mb-4">Sensores de suelo</h3>
+<p class="text-on-surface-variant font-body-md">Sensores de precisión miden la humedad y temperatura en tiempo real a nivel de la raíz.</p>
+</div>
+<div class="bg-white p-8 rounded-xl card-shadow relative z-10">
+<div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white font-bold text-2xl mb-6">2</div>
+<h3 class="font-headline-sm text-headline-sm mb-4">Edge AI</h3>
+<p class="text-on-surface-variant font-body-md">Unidades de procesamiento en campo deciden exactamente cuándo regar, completamente sin conexión.</p>
+</div>
+<div class="bg-white p-8 rounded-xl card-shadow relative z-10">
+<div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white font-bold text-2xl mb-6">3</div>
+<h3 class="font-headline-sm text-headline-sm mb-4">LoRaWAN</h3>
+<p class="text-on-surface-variant font-body-md">Los datos se transmiten de forma segura hasta 15 km, incluso en los terrenos más remotos.</p>
+</div>
+<div class="bg-white p-8 rounded-xl card-shadow relative z-10">
+<div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white font-bold text-2xl mb-6">4</div>
+<h3 class="font-headline-sm text-headline-sm mb-4">Panel de Control</h3>
+<p class="text-on-surface-variant font-body-md">Visibilidad total para las Juntas de Usuarios y agricultores a través de una plataforma centralizada.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="py-20 md:py-32 bg-surface">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<h2 class="font-headline-md text-headline-md text-center mb-16 text-primary">Todo lo que necesitas para proteger tu cosecha</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Feature 1 -->
+<div class="group bg-white p-8 rounded-2xl card-shadow border border-outline-variant transition-all hover:border-primary/50">
+<div class="w-12 h-12 bg-secondary/10 text-secondary rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined">settings_suggest</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-4">Riego Autónomo</h3>
+<p class="text-on-surface-variant">El sistema decide y actúa sin intervención manual, asegurando humedad óptima 24/7.</p>
+</div>
+<!-- Feature 2 -->
+<div class="group bg-white p-8 rounded-2xl card-shadow border border-outline-variant transition-all hover:border-primary/50">
+<div class="w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined">wifi_off</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-4">Funciona Sin Internet</h3>
+<p class="text-on-surface-variant">Edge Computing procesa decisiones localmente en la parcela, eliminando barreras de conectividad.</p>
+</div>
+<!-- Feature 3 -->
+<div class="group bg-white p-8 rounded-2xl card-shadow border border-outline-variant transition-all hover:border-primary/50">
+<div class="w-12 h-12 bg-accent-orange/10 text-accent-orange rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined">router</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-4">Conectividad LoRaWAN</h3>
+<p class="text-on-surface-variant">Transmisión de datos de largo alcance hasta 15 km a través de vegetación densa.</p>
+</div>
+<!-- Feature 4 -->
+<div class="group bg-white p-8 rounded-2xl card-shadow border border-outline-variant transition-all hover:border-primary/50">
+<div class="w-12 h-12 bg-secondary-container text-on-secondary-container rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined">dashboard</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-4">Panel Institucional</h3>
+<p class="text-on-surface-variant">Monitoreo en tiempo real para que las Juntas de Usuarios gestionen los recursos regionales.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Target Segments -->
+<section id="segments" class="py-20 md:py-32 bg-surface-container-low">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<h2 class="font-headline-md text-headline-md text-center mb-16 text-primary">Diseñado para Dos Usuarios Clave</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Segment Farmers -->
+<div class="relative overflow-hidden group rounded-3xl h-[500px]">
+<img alt="Farmer in field" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A detailed image of a professional farmer standing in a lush green vegetable field during the golden hour. The lighting is warm and natural, emphasizing the organic texture of the crops. The scene conveys a sense of traditional agricultural expertise meeting modern efficiency. The overall aesthetic is grounded, reliable, and high-performance, reflecting a professional corporate modern style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnTs2Wupq80tiv30fM_DvlHWhZCrYCL5tkQhD3-VqWPUb5fiEu1JsPpyh1fktiKjbFyI-di_7QkuASJb4rH_UrRakEu0LSGhMVYpRSXhONr2JCOpEsLik8PeCManBUX2-6jKiXth8dD3w30kQnMDyah9E-M8HSZnDqF9GIsN2pAk32TDy-y4jYPxqeQNQcDLTLgTnijChGPmkfRubSEy9M4EH_t0uuHi-4daVKcIL7qLsHOCgMU1XtsEasiJUkp0VUQfHB2gTmCPg"/>
+<div class="absolute inset-0 bg-secondary/80 mix-blend-multiply"></div>
+<div class="absolute inset-0 p-12 flex flex-col justify-end text-white">
+<h3 class="font-display-lg text-headline-md mb-6">Pequeños y Medianos Agricultores</h3>
+<ul class="space-y-4">
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary-fixed">notifications_active</span> Alertas Críticas y Salud del Suelo</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary-fixed">auto_mode</span> Riego de Precisión Automatizado</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary-fixed">phone_iphone</span> Control Intuitivo desde App Móvil</li>
+</ul>
+</div>
+</div>
+<!-- Segment Institutions -->
+<div class="relative overflow-hidden group rounded-3xl h-[500px]">
+<img alt="Data analytics" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A professional business environment showing high-resolution data dashboards on sleek monitors in a modern office. The lighting is crisp and cool, reflecting a corporate modern technological atmosphere. Graphs and irrigation maps are displayed in primary blues and professional greens. The scene exudes technical superiority and administrative precision for institutional users." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAr59hM_qsMInyObuH8G61OIcbvsIas4zlkMWAZNol9EcrrBKye7BIC_WLS2qSqQ_ZeranlHy5WEWSfJbexep7enMzdPa_EdQ8SP0mh4GCMGzStnWA_6GP6LJENDC6NVRs4uEO57prTHaa-xGXdJMVXpyXWOqTBlK7y6oQ_B0-hk67xg32mgA6B0WUrtKwifSO5HqWZZaqcl64W0Lku6tWPd9MdI1D3AXw3KKRy7-0ds1U9zMgW6a2BNGYHoSpX8MKeKWPfzl4bd-U"/>
+<div class="absolute inset-0 bg-primary/80 mix-blend-multiply"></div>
+<div class="absolute inset-0 p-12 flex flex-col justify-end text-white">
+<h3 class="font-display-lg text-headline-md mb-6">Juntas de Usuarios e Instituciones</h3>
+<ul class="space-y-4">
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-fixed">analytics</span> Panel Centralizado del Distrito</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-fixed">assessment</span> Reportes Detallados de Consumo</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-fixed">credit_score</span> Evaluación Precisa del Riesgo Crediticio</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-fixed">verified</span> Auditorías Remotas sin Esfuerzo</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Comparison Table -->
+<section class="py-20 md:py-32 bg-surface">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<h2 class="font-headline-md text-headline-md text-center mb-16 text-primary">¿Por qué AquaEdge y no otros?</h2>
+<div class="overflow-x-auto rounded-2xl border border-outline-variant bg-white">
+<table class="w-full border-collapse text-left">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="p-6 font-label-md text-primary">CARACTERÍSTICAS</th>
+<th class="p-6 font-headline-sm text-primary bg-primary-fixed/30 border-x-2 border-primary">AquaEdge</th>
+<th class="p-6 font-label-md text-on-surface-variant">Netafim</th>
+<th class="p-6 font-label-md text-on-surface-variant">Smelpro</th>
+<th class="p-6 font-label-md text-on-surface-variant">Rain Bird</th>
+</tr>
+</thead>
+<tbody class="font-body-md">
+<tr class="border-b border-outline-variant">
+<td class="p-6 font-medium">Funciona sin internet</td>
+<td class="p-6 text-center bg-primary-fixed/10 border-x-2 border-primary"><span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="p-6 text-center"><span class="material-symbols-outlined text-error">cancel</span></td>
+<td class="p-6 text-center"><span class="material-symbols-outlined text-error">cancel</span></td>
+<td class="p-6 text-center"><span class="material-symbols-outlined text-error">cancel</span></td>
+</tr>
+<tr class="border-b border-outline-variant">
+<td class="p-6 font-medium">Accesible</td>
+<td class="p-6 text-center bg-primary-fixed/10 border-x-2 border-primary"><span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="p-6 text-center"><span class="material-symbols-outlined text-error">cancel</span></td>
+<td class="p-6 text-center"><span class="material-symbols-outlined text-accent-orange">warning</span></td>
+<td class="p-6 text-center"><span class="material-symbols-outlined text-accent-orange">warning</span></td>
+</tr>
+<tr class="border-b border-outline-variant">
+<td class="p-6 font-medium">LoRaWAN</td>
+<td class="p-6 text-center bg-primary-fixed/10 border-x-2 border-primary"><span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="p-6 text-center"><span class="material-symbols-outlined text-error">cancel</span></td>
+<td class="p-6 text-center"><span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="p-6 text-center"><span class="material-symbols-outlined text-error">cancel</span></td>
+</tr>
+<tr class="border-b border-outline-variant">
+<td class="p-6 font-medium">Edge AI</td>
+<td class="p-6 text-center bg-primary-fixed/10 border-x-2 border-primary"><span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="p-6 text-center"><span class="material-symbols-outlined text-error">cancel</span></td>
+<td class="p-6 text-center"><span class="material-symbols-outlined text-error">cancel</span></td>
+<td class="p-6 text-center"><span class="material-symbols-outlined text-error">cancel</span></td>
+</tr>
+<tr>
+<td class="p-6 font-medium">Panel Web</td>
+<td class="p-6 text-center bg-primary-fixed/10 border-x-2 border-primary"><span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="p-6 text-center"><span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="p-6 text-center"><span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="p-6 text-center"><span class="material-symbols-outlined text-error">cancel</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Impact Metrics -->
+<section class="py-24 bg-primary text-white">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+<div>
+<div class="font-stat-value text-stat-value text-secondary-fixed mb-2">30%</div>
+<div class="font-label-md text-label-md uppercase tracking-wider text-primary-fixed/80">Reducción de Agua</div>
+</div>
+<div>
+<div class="font-stat-value text-stat-value text-secondary-fixed mb-2">25%</div>
+<div class="font-label-md text-label-md uppercase tracking-wider text-primary-fixed/80">Menos Pérdida de Cultivos</div>
+</div>
+<div>
+<div class="font-stat-value text-stat-value text-secondary-fixed mb-2">50+</div>
+<div class="font-label-md text-label-md uppercase tracking-wider text-primary-fixed/80">Agricultores a Bordo</div>
+</div>
+<div>
+<div class="font-stat-value text-stat-value text-secondary-fixed mb-2">15km</div>
+<div class="font-label-md text-label-md uppercase tracking-wider text-primary-fixed/80">Alcance del Sensor</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Get Started -->
+<section id="contact" class="py-20 md:py-32 bg-surface">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-center">
+<h2 class="font-headline-md text-headline-md mb-16 text-primary">Empieza a proteger tus cultivos hoy</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-16">
+<div class="flex flex-col items-center">
+<div class="w-20 h-20 bg-surface-container rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">contact_mail</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-2">Contáctanos</h3>
+<p class="text-on-surface-variant max-w-[250px]">Obtén una consulta personalizada y estudio de viabilidad.</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-20 h-20 bg-surface-container rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">build</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-2">Instalación Piloto</h3>
+<p class="text-on-surface-variant max-w-[250px]">Desplegamos el primer lote de sensores y unidades edge en tu parcela.</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-20 h-20 bg-surface-container rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">insights</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-2">Monitorea y Ahorra</h3>
+<p class="text-on-surface-variant max-w-[250px]">Observa cómo tu eficiencia se dispara desde el primer día.</p>
+</div>
+</div>
+<button class="bg-accent-orange text-white px-12 py-5 rounded-lg font-bold text-xl cta-shadow hover:scale-105 transition-all">
+                Solicitar Piloto Gratuito
+            </button>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-highest">
+<div class="flex flex-col md:flex-row justify-between items-start gap-gutter px-margin-mobile md:px-margin-desktop py-16 max-w-container-max mx-auto">
+<div class="flex flex-col gap-6">
+<div class="font-headline-sm text-headline-sm font-bold text-primary">AquaEdge</div>
+<p class="text-on-surface-variant max-w-xs font-body-md">
+                    © 2024 AquaEdge Technologies. Precisión en cada gota. Líderes en edge computing para una agricultura resiliente.
+                </p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-12">
+<div class="flex flex-col gap-4">
+<h4 class="font-label-md text-primary font-bold">Política de Privacidad</h4>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Privacidad</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Cookies</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-md text-primary font-bold">Términos de Servicio</h4>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Legal</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Cumplimiento</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-md text-primary font-bold">Seguridad</h4>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Seguridad de Datos</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Infraestructura</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-md text-primary font-bold">Empleos</h4>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Roles Abiertos</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Pasantías</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
